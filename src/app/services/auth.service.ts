@@ -18,6 +18,7 @@ export class AuthService {
       map(response => {
         if (response.token) {
           localStorage.setItem('jwtToken', response.token);
+          localStorage.setItem('userEmail', email); // Store the email in localStorage
           console.log('Login successful');
         }
         return response;
@@ -28,6 +29,7 @@ export class AuthService {
       })
     );
   }
+  
 
   register(email: string, password: string, firstName: string, lastName: string): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/register`, { email, password, firstName, lastName }).pipe(
@@ -44,7 +46,8 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('jwtToken');
+    localStorage.removeItem('userEmail'); 
     console.log('Logout successful');
-  }
+  }  
   
 }

@@ -25,13 +25,28 @@ export class RegisterComponent implements OnInit {
   onSubmit(): void {
     if (this.registerForm.valid) {
       const { email, password, firstName, lastName } = this.registerForm.value;
-this.authService.login(email, password).subscribe({
-  next: () => {
-    console.log('Auto-login successful');
-    this.router.navigate(['/']); 
-  },
-  error: (error) => console.error('Auto-login failed', error)
-});
+      this.authService.register(email, password, firstName, lastName).subscribe({
+        next: () => {
+          // After successful registration, perform login
+          this.authService.login(email, password).subscribe({
+            next: (response) => {
+              console.log('Login successful after registration', response);
+              // Assuming your response includes the user's name or email, you can store it now
+              localStorage.setItem('userEmail', email); // Storing the email or username for greeting
+              this.router.navigate(['/main-page']); // Adjust this to your main page's route
+            },
+            error: (error) => {
+              console.error('Auto-login failed', error);
+              // Optionally handle auto-login failure here, maybe redirect to login page manually
+            }
+          });
+        },
+        error: (error) => {
+          console.error('Registration failed', error);
+          // Handle registration error here
+        }
+      });
     }
   }
+    
 }

@@ -11,6 +11,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { HighlightProductDirective } from './directives/highlight-product.directive';
 import { FormatPricePipe } from './pipes/format-price.pipe';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MainPageComponent } from './components/main-page/main-page.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     LoginComponent,
     RegisterComponent,
     HighlightProductDirective,
-    FormatPricePipe
+    FormatPricePipe,
+    MainPageComponent
   ],
   imports: [
     BrowserModule,
