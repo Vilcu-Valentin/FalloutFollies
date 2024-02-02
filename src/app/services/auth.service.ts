@@ -46,4 +46,5 @@ export class AuthService {
     localStorage.removeItem('jwtToken');
     console.log('Logout successful');
   }
+  
 }
