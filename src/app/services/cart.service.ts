@@ -33,16 +33,16 @@ export class CartService {
     });
   }
 
-  addToCart(product: Product): void {
+  addToCart(productWithQuantity: { product: Product; quantity: number }): void {
     const currentItems = this.cartItems.getValue();
-    const existingItem = currentItems.find(item => item.product.id === product.id);
+    const existingItem = currentItems.find(item => item.product.id === productWithQuantity.product.id);
     if (existingItem) {
-      existingItem.quantity += 1;
+      existingItem.quantity += productWithQuantity.quantity;
     } else {
-      currentItems.push({ product, quantity: 1 });
+      currentItems.push(productWithQuantity);
     }
     this.cartItems.next(currentItems);
-    this.notifyUser(`${product.name} has been added to the cart!`);
+    this.notifyUser(`${productWithQuantity.product.name} has been added to the cart!`);
   }
 
   removeFromCart(productId: number): void {
@@ -58,11 +58,40 @@ export class CartService {
 
   notifyUser(message: string): void {
     this.snackBar.open(message, 'Close', {
-      duration: 3000,
-      horizontalPosition: 'right',
+      duration: 1500,
+      horizontalPosition: 'left',
       verticalPosition: 'top',
     });
   }
+
+  updateQuantity(productId: number, quantity: number): void {
+    const currentItems = this.cartItems.getValue();
+    const itemIndex = currentItems.findIndex(item => item.product.id === productId);
+    if (itemIndex !== -1) {
+      currentItems[itemIndex].quantity += quantity;
+      this.cartItems.next(currentItems);
+      this.notifyUser("Quantity updated!");
+    }
+  }
+
+  inc_updateQuantity(productId: number, quantity: number): void {
+    const currentItems = this.cartItems.getValue();
+    const itemIndex = currentItems.findIndex(item => item.product.id === productId);
+    if (itemIndex !== -1) {
+      currentItems[itemIndex].quantity = quantity;
+      this.cartItems.next(currentItems);
+      this.notifyUser("Quantity updated!");
+    }
+  }
+
+  calculateItemTotal(item: CartItem): number {
+    return item.product.price * item.quantity;
+  }
+  
+  calculateCartTotal(): number {
+    const currentItems = this.cartItems.getValue();
+    return currentItems.reduce((acc, item) => acc + (item.product.price * item.quantity), 0);
+  }  
 
   checkout(): void {
     const cartItems = this.cartItems.getValue();

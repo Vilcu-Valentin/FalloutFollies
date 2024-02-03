@@ -34,7 +34,7 @@ export class MainPageComponent implements OnInit {
   }
 
   addToCart(product: Product): void {
-    this.cartService.addToCart(product);
+    this.cartService.addToCart({product: product, quantity: 1});
     // TODO: Display a notification to the user
   }
 }
