@@ -15,8 +15,7 @@
                   <h3>{{ product.name }}</h3>
                   <p>{{ product.description }}</p>
                   <span class="price">{{ product.price | currency }}</span>
-                  <!-- Button can be styled as per your CSS for 'Buy Now' -->
-                  <button class="buy-now">Buy Now</button>
+                  <button (click)="addToCart(product)">Buy Now</button>
               </div>
           </div>
       </div>

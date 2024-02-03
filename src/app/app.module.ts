@@ -11,6 +11,9 @@ import { FormatPricePipe } from './pipes/format-price.pipe';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { CartComponent } from './components/cart/cart.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -21,16 +24,19 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
     FormatPricePipe,
     MainPageComponent,
     NavBarComponent,
+    CartComponent,
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    MatSnackBarModule,
     ReactiveFormsModule
   ],
   providers: [
-    provideClientHydration()
+    provideClientHydration(),
+    provideAnimationsAsync()
   ],
   bootstrap: [AppComponent]
 })
