@@ -20,20 +20,19 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
-  onSubmit(): void {
-    if (this.loginForm.valid) {
-      const { email, password } = this.loginForm.value;
-      this.authService.login(email, password).subscribe({
-        next: (response) => {
-          alert('Login successful');
-          this.router.navigate(['/main-page']); // Navigate to home/dashboard page upon successful login
-        },
-        error: (error) => {
-          alert('Login failed');
-        }
-      });
-    }
+  onSubmit() : void{
+    const { email, password } = this.loginForm.value;
+    this.authService.login(email, password).subscribe(
+      () => {
+        this.router.navigate(['/main-page']);
+      },
+      (error) => {
+        console.error(error);
+        alert('Failed to login');
+      }
+    )
   }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service'; // Adjust the path as necessary
+import { AuthService } from '../../services/auth.service';
+import { ProductService, Product } from '../../services/product.service';
 
 @Component({
   selector: 'app-main-page',
@@ -8,16 +9,22 @@ import { AuthService } from '../../services/auth.service'; // Adjust the path as
   styleUrls: ['./main-page.component.css']
 })
 export class MainPageComponent implements OnInit {
-  userEmail: string | null = localStorage.getItem('userEmail');
+  products: Product[] = [];
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private productService: ProductService,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    this.userEmail = localStorage.getItem('userEmail'); // This key must match what you've set on login
-  }  
-
-  onLogout(): void {
-    this.authService.logout();
-    this.router.navigate(['/login']);
+    this.productService.getProducts().subscribe(
+      (products) => {
+        this.products = products;
+      },
+      (error) => {
+        console.error('Failed to load products', error);
+      }
+    );
   }
 }

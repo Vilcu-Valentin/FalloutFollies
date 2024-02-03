@@ -1,0 +1,19 @@
+<div *ngIf="authService.isLoggedIn()">
+    <header>
+        <div class="header-container">
+          <div class="logo">
+            <!-- Update the path to your assets folder -->
+            <img src="/assets/images/logo.png" alt="Fallout Follies logo">
+            <h1>Fallout Follies</h1>
+          </div>
+          <nav>
+            <ul>
+              <li><a routerLink="/main-page">Shop</a></li>
+              <li><a routerLink="/about">About Us</a></li>
+              <li><a routerLink="/cart">Cart</a></li>
+              <li><button (click)="onLogout()">Logout</button></li>
+            </ul>
+          </nav>
+        </div>
+    </header>
+  </div>

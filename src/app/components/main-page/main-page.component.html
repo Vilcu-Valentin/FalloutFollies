@@ -1,6 +1,26 @@
-<div>
-    <h1>Hello, {{ userEmail }}!</h1>
-    <button (click)="onLogout()">Logout</button>
-  </div>
-  <app-product-list></app-product-list>
-  
+<!-- main-page.component.html -->
+<div class="container">
+  <section class="hero">
+    <div class="hero-content">
+      <h2>Our Fine Selection of Bombs</h2>
+      <p>Explore our latest collection of ordinance for enthusiasts and collectors alike.</p>
+    </div>
+  </section>
+
+  <section class="product-section">
+      <div class="product-grid">
+          <div *ngFor="let product of products" class="product-card">
+              <img [src]="product.imageUrl" alt="{{ product.name }}" class="product-image">
+              <div class="product-details">
+                  <h3>{{ product.name }}</h3>
+                  <p>{{ product.description }}</p>
+                  <span class="price">{{ product.price | currency }}</span>
+                  <!-- Button can be styled as per your CSS for 'Buy Now' -->
+                  <button class="buy-now">Buy Now</button>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <!-- Footer here if needed -->
+</div>
