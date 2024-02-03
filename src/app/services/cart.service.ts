@@ -1,10 +1,10 @@
-// src/app/services/cart.service.ts
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Product } from './product.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http'; 
 import { AuthService } from './auth.service';
+
 export interface CartItem {
   product: Product;
   quantity: number;
@@ -26,6 +26,13 @@ export class CartService {
     return this.cartItems.asObservable();
   }
 
+  private getHeaders(): HttpHeaders {
+    const token = this.authService.getToken();
+    return new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+    });
+  }
+
   addToCart(product: Product): void {
     const currentItems = this.cartItems.getValue();
     const existingItem = currentItems.find(item => item.product.id === product.id);
@@ -35,7 +42,7 @@ export class CartService {
       currentItems.push({ product, quantity: 1 });
     }
     this.cartItems.next(currentItems);
-    this.notifyUser(product.name + " has been added to the cart!");
+    this.notifyUser(`${product.name} has been added to the cart!`);
   }
 
   removeFromCart(productId: number): void {
@@ -65,35 +72,32 @@ export class CartService {
     }
 
     const userId = this.authService.getUserIdFromToken();
-    console.log(userId);
     if (!userId) {
         this.notifyUser("User not identified!");
         return;
     }
 
     const orderItems = cartItems.map(item => ({
-        productId: item.product.id,
-        quantity: item.quantity
+      productId: item.product.id,
+      quantity: item.quantity
     }));
 
     const orderDto = {
-        userId: userId,
-        orderItems: orderItems
+      userId: userId,
+      orderItems: orderItems
     };
 
-    // Assuming the Orders endpoint is part of the same API
-    this.http.post('https://localhost:7088/api/orders', orderDto).subscribe({
-        next: () => {
-            this.clearCart();
-            this.notifyUser("Checkout successful. Your order has been placed!");
-        },
-        error: (error) => {
-            console.error("Checkout failed", error);
-            this.notifyUser("Checkout failed. Please try again later.");
-        }
+    this.http.post('https://localhost:7088/api/orders', orderDto, { headers: this.getHeaders() }).subscribe({
+      next: () => {
+          this.clearCart();
+          this.notifyUser("Checkout successful. Your order has been placed!");
+      },
+      error: (error) => {
+          console.error("Checkout failed", error);
+          this.notifyUser("Checkout failed. Please try again later.");
+      }
     });
-}
-
+  }
 
   // ... other methods like calculateTotal, etc.
 }

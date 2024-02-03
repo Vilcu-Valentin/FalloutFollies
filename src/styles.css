@@ -1,46 +1,43 @@
-/* You can add global styles to this file, and also import other style files */
-/* styles.css */
+/* Global styles.css */
+
+@font-face {
+  font-family: 'Overseer';
+  src: url('/assets/font/monofonto rg.otf');
+}
+
 body {
-    font-family: Arial, sans-serif;
-  }
-  
-  .login-container, .register-container {
-    margin: auto;
-    width: 300px;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .form-group {
-    margin-bottom: 20px;
-  }
-  
-  .form-group label {
-    display: block;
-  }
-  
-  .form-group input {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-  }
-  
-  button {
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  button[disabled] {
-    background-color: #ccc;
-  }
-  
-  h1 {
-    color: #333;
-  }
-  
+  font-family: 'Overseer', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-image: url("/assets/images/background.jpg");
+  background-color: #000; /* Fallback for when the image is not available */
+  color: #fff;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+button {
+  background-color: #ffa600;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 700;
+  transition: all 0.2s ease-in-out;
+  margin-bottom: 10px;
+    font-family: 'Overseer', sans-serif;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+button:hover {
+  background-color: #ff7c00;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.mat-snack-bar-container {
+  background-color: #333; 
+  color: #fff; 
+}
