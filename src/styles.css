@@ -7,12 +7,13 @@
 
 body {
   font-family: 'Overseer', sans-serif;
-  margin: 0;
-  padding: 0;
   background-image: url("/assets/images/background.jpg");
   background-color: #000; /* Fallback for when the image is not available */
-  color: #fff;
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+div {
+  font-family: 'Overseer', sans-serif;
 }
 
 button {
@@ -33,9 +34,6 @@ button {
 button:hover {
   background-color: #ff7c00;
 }
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .mat-snack-bar-container {
   background-color: #333; 
