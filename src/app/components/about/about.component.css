@@ -1,0 +1,41 @@
+/* Container Styles */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: rgba(51, 51, 51, 0.92);
+}
+
+.about {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 80px;
+  background-color: #222222;
+  margin-top: 15px;
+}
+
+.about-image {
+  width: 50%;
+  height: 500px;
+  background-image: url("/assets/images/like.png");
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+}
+
+.about-content {
+  width: 45%;
+}
+
+.about h2 {
+  font-size: 36px;
+  margin-bottom: 40px;
+}
+
+.about p {
+  font-size: 18px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}

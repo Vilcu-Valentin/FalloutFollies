@@ -18,6 +18,7 @@ import { ProductDetailComponent } from './components/product-detail/product-deta
 import { FormsModule } from '@angular/forms';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { AboutComponent } from './components/about/about.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +31,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     CartComponent,
     ProductDetailComponent,
     ConfirmDialogComponent,
+    AboutComponent,
 
   ],
   imports: [

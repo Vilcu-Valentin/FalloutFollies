@@ -1,16 +1,24 @@
-<!-- In cart.component.html -->
-<div *ngFor="let item of cartItems; let i = index" class="cart-item">
-  <img [src]="item.product.imageUrl" alt="{{ item.product.name }}">
-  <div>
-    <h3>{{ item.product.name }}</h3>
-    <p>Quantity: <input type="number" [(ngModel)]="item.quantity" (change)="updateQuantity(item.product.id, item.quantity)"></p>
-    <p>Price: {{ item.product.price | currency }}</p>
-    <p>Total: {{ cartService.calculateItemTotal(item) | currency }}</p>
-    <button (click)="removeFromCart(item.product.id)">Remove</button>
+<div class="cart-container">
+  <div *ngFor="let item of cartItems; let i = index" class="cart-item">
+    <div class="cart-item-image">
+      <img [src]="item.product.imageUrl" alt="{{ item.product.name }}">
+    </div>
+    <div class="cart-item-details">
+      <h3>{{ item.product.name }}</h3>
+      <div class="quantity-control">
+        <label for="quantity-{{i}}">Quantity:</label>
+        <input id="quantity-{{i}}" type="number" [(ngModel)]="item.quantity" (change)="updateQuantity(item.product.id, item.quantity)">
+      </div>
+      <p>Price: {{ item.product.price | currency }}</p>
+      <p>Total: {{ cartService.calculateItemTotal(item) | currency }}</p>
+    </div>
+    <div class="cart-item-actions">
+      <button (click)="removeFromCart(item.product.id)">Remove</button>
+    </div>
   </div>
-</div>
 
-<div class="cart-total">
-  <h2>Total: {{ cartTotal | currency }}</h2>
-  <button (click)="checkout()">Checkout</button>
+  <div class="cart-total">
+    <h2>Total: {{ cartTotal | currency }}</h2>
+    <button (click)="checkout()">Checkout</button>
+  </div>
 </div>

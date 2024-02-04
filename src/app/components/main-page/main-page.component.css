@@ -1,7 +1,15 @@
 /* main-page.component.css */
-/* ...your existing CSS... */
+.product-card {
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease;
+    cursor: pointer; /* Optional: changes the cursor to a pointer to indicate it's clickable */
+  }
+  
+  .product-card:hover {
+    transform: scale(1.05); /* Scales up the card a bit */
+    background-color: #3d3d3d; /* Change to whatever color you like */
+  }
+  
 
-/* Ensure the product grid and cards match the style of your example */
 .product-section {
     text-align: center;
     padding: 20px;
@@ -51,14 +59,6 @@
 
 .buy-now:hover {
     background-color: #e03e00; /* Darker on hover */
-}
-
-/* Footer styling */
-footer {
-    background-color: #222;
-    color: white;
-    padding: 20px;
-    text-align: center;
 }
 
 /* Add responsive styling as needed */
