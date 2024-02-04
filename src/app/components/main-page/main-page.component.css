@@ -5,15 +5,15 @@
   }
   
   .product-card:hover {
-    transform: scale(1.05); /* Scales up the card a bit */
-    background-color: #3d3d3d; /* Change to whatever color you like */
+    transform: scale(1.05); 
+    background-color: #3d3d3d; 
   }
   
 
 .product-section {
     text-align: center;
     padding: 20px;
-    background-color: #333; /* Dark background for the section */
+    background-color: #333; 
 }
 
 .product-grid {
@@ -24,11 +24,11 @@
 }
 
 .product-card {
-    background: #222; /* Dark card background */
+    background: #222; 
     border-radius: 10px;
     padding: 15px;
-    color: #fff; /* Text color */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.5); /* Card shadow */
+    color: #fff; 
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5); 
 }
 
 .product-image {
