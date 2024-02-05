@@ -190,7 +190,6 @@
     margin: 20px 0;
   }
 
-
 @media screen and (max-width: 768px) {
     .product-grid {
         grid-template-columns: 1fr; 

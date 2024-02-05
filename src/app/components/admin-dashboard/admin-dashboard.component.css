@@ -1,0 +1,49 @@
+.admin-dashboard {
+    width: 100%;
+    max-width: 800px; 
+    margin: 0 auto;
+    overflow-x: auto; 
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    text-align: left;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  th {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #333;
+  }
+  tr:nth-child(odd) {
+    background-color: #444;
+  }
+  
+  tr:hover {
+    background-color: #797979;
+  }
+  
+  button {
+    padding: 5px 10px;
+    margin-right: 5px;
+  }
+
+  .admin-role {
+    color: rgb(255, 87, 54); 
+  }
+  
+  .non-admin-role {
+    color: rgb(60, 211, 18); 
+  }
+  
+
+  
