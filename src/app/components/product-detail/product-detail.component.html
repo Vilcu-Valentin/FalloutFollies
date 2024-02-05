@@ -1,18 +1,25 @@
 <div class="product-page-container">
-    <div class="product-image-container">
-      <img [src]="product.imageUrl" alt="{{ product.name }}" class="product-image">
+  <div class="product-image-container">
+    <img [src]="product.imageUrl" alt="{{ product.name }}" class="product-image">
+  </div>
+  <div class="product-info-container">
+    <h2>{{ product.name }}</h2>
+    <div class="product-yield">
+      <img [src]="'/assets/images/' + getProductYieldClass(product.yield) + '.png'" alt="Yield icon">
+      <span [ngClass]="getProductYieldClass(product.yield)">{{ product.yield }} kt</span>
     </div>
-    <div class="product-info-container">
-      <h2>{{ product.name }}</h2>
-      <p class="product-description">{{ product.description }}</p>
-      <div class="product-price">
-        <img src="/assets/images/yield_medium.png" alt="Nuclear symbol">
-        <span>{{ product.price | currency }}</span>
-      </div>
-      <div class="product-purchase">
-        <input type="number" [(ngModel)]="quantity" min="1" value="1" class="quantity-input">
-        <button (click)="addToCart()" class="buy-button">Buy Now</button>
-      </div>
+    <p class="product-description">{{ product.description }}</p>
+    <div class="product-specs">
+      <ul>
+        <li *ngFor="let spec of specsList">{{ spec }}</li>
+      </ul>
+    </div>    
+    <div class="product-price">
+      <span>{{ product.price | currency }}</span>
+    </div>
+    <div class="product-purchase">
+      <input type="number" [(ngModel)]="quantity" min="1" value="1" class="quantity-input">
+      <button (click)="addToCart()" class="buy-button">Buy Now</button>
     </div>
   </div>
-  
+</div>

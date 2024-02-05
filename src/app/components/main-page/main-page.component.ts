@@ -33,8 +33,14 @@ export class MainPageComponent implements OnInit {
     });
   }
 
+  getProductYieldClass(yieldValue: number): string {
+    if (yieldValue < 50) return 'yield-low';
+    else if (yieldValue < 100) return 'yield-medium';
+    else if (yieldValue < 1000) return 'yield-high';
+    else return 'yield-very-high';
+  }
+
   addToCart(product: Product): void {
     this.cartService.addToCart({product: product, quantity: 1});
-    // TODO: Display a notification to the user
   }
 }

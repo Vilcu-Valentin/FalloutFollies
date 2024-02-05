@@ -9,6 +9,8 @@ export interface Product {
   description: string;
   price: number;
   imageUrl: string; 
+  yield: number;
+  specs: string;
 }
 
 

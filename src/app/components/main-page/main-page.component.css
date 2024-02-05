@@ -1,8 +1,15 @@
 /* main-page.component.css */
 .product-card {
-    transition: transform 0.3s ease-in-out, background-color 0.3s ease;
-    cursor: pointer; /* Optional: changes the cursor to a pointer to indicate it's clickable */
-  }
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    background: #222; 
+    border-radius: 10px;
+    padding: 15px;
+    color: #fff; 
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5); 
+    height: 100%;
+}
   
   .product-card:hover {
     transform: scale(1.05); 
@@ -20,6 +27,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 20px;
+    row-gap: 50px;
     padding: 20px;
 }
 
@@ -38,17 +46,25 @@
 }
 
 .product-details {
-    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+}
+
+.product-details p{
+    color: #aaaaaa;
 }
 
 .price {
     font-weight: bold;
-    display: block; /* Ensure the price is on its own line */
-    margin: 10px 0; /* Spacing for the price */
+    display: block; 
+    font-size: 20px;
+    margin: 10px 0; 
 }
 
 .buy-now {
-    background-color: #ff4500; /* Orange button background */
+    background-color: #ff4500; 
     color: white;
     border: none;
     padding: 10px 20px;
@@ -58,7 +74,35 @@
 }
 
 .buy-now:hover {
-    background-color: #e03e00; /* Darker on hover */
+    background-color: #e03e00; 
+}
+
+.yield {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.yield img {
+    width: 30px; 
+    height: auto;
+    margin-right: 10px;
+}
+
+.yield-low {
+    color: #bfcc2e; 
+}
+
+.yield-medium {
+    color: #f1c40f; 
+}
+
+.yield-high {
+    color: #e67e22;
+}
+
+.yield-very-high {
+    color: #e74c3c; 
 }
 
 /* Add responsive styling as needed */

@@ -2,11 +2,15 @@
 <div class="container">
   <section class="product-section">
       <div class="product-grid">
-          <div *ngFor="let product of products" class="product-card" [routerLink]="['/product', product.id]">
+        <div *ngFor="let product of products" class="product-card" [routerLink]="['/product', product.id]">
               <img [src]="product.imageUrl" alt="{{ product.name }}" class="product-image">
               <div class="product-details">
                   <h3>{{ product.name }}</h3>
-                  <p>{{ product.description }}</p>
+                  <p>{{ product.description | slice:0:50 }}...</p>
+                  <div class="yield" [ngClass]="getProductYieldClass(product.yield)">
+                    <img [src]="'/assets/images/' + getProductYieldClass(product.yield) + '.png'" alt="Yield">
+                    <span>{{ product.yield }} kt</span>
+                  </div>
                   <span class="price">{{ product.price | currency }}</span>
                   <button (click)="addToCart(product); $event.stopPropagation()">Buy Now</button>
               </div>
