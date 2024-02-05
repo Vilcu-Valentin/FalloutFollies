@@ -11,6 +11,10 @@ import { CartService } from '../../services/cart.service';
 })
 export class MainPageComponent implements OnInit {
   products: Product[] = [];
+  filteredProducts: Product[] = [];
+  currentSort: { property: 'price' | 'yield', direction: number } | null = null;
+  priceFilter: [number, number] = [0, 999999]; // Default price filter
+  yieldFilter: [number, number] = [0, 999999];
 
   constructor(
     private productService: ProductService,
@@ -26,11 +30,43 @@ export class MainPageComponent implements OnInit {
   fetchProducts() {
     this.productService.getProducts().subscribe({
       next: (response: any) => { 
-        this.products = response.$values; 
-        console.log('Updated products array:', this.products);
+        this.products = response.$values;
+        this.applyFilters(); // Apply filters right after fetching
       },
       error: (error) => console.error('Error fetching products', error)
     });
+  }
+
+  setPriceFilter(value: string): void {
+    this.priceFilter = value.split(',').map(Number) as [number, number];
+    this.applyFilters();
+  }
+
+  setYieldFilter(value: string): void {
+    this.yieldFilter = value.split(',').map(Number) as [number, number];
+    this.applyFilters();
+  }
+
+  applyFilters(): void {
+    this.filteredProducts = this.products.filter(product => {
+      const priceMatch = product.price >= this.priceFilter[0] && product.price <= this.priceFilter[1];
+      const yieldMatch = product.yield >= this.yieldFilter[0] && product.yield <= this.yieldFilter[1];
+      return priceMatch && yieldMatch;
+    });
+    if (this.currentSort) { 
+      this.sortProducts(this.currentSort.property, this.currentSort.direction);
+    }
+  }
+
+  sortProducts(property: 'price' | 'yield', direction: number): void {
+    this.currentSort = { property, direction };
+    this.filteredProducts.sort((a, b) => {
+      return (a[property] - b[property]) * direction;
+    });
+  }
+  
+  isSortSelected(property: 'price' | 'yield', direction: number): boolean {
+    return this.currentSort?.property === property && this.currentSort?.direction === direction;
   }
 
   getProductYieldClass(yieldValue: number): string {

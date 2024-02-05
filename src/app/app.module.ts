@@ -7,7 +7,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { HighlightProductDirective } from './directives/highlight-product.directive';
-import { FormatPricePipe } from './pipes/format-price.pipe';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
@@ -25,7 +24,6 @@ import { AboutComponent } from './components/about/about.component';
     LoginComponent,
     RegisterComponent,
     HighlightProductDirective,
-    FormatPricePipe,
     MainPageComponent,
     NavBarComponent,
     CartComponent,

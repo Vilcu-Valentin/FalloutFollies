@@ -1,21 +1,58 @@
 <!-- main-page.component.html -->
 <div class="container">
-  <section class="product-section">
-      <div class="product-grid">
-        <div *ngFor="let product of products" class="product-card" [routerLink]="['/product', product.id]">
-              <img [src]="product.imageUrl" alt="{{ product.name }}" class="product-image">
-              <div class="product-details">
-                  <h3>{{ product.name }}</h3>
-                  <p>{{ product.description | slice:0:50 }}...</p>
-                  <div class="yield" [ngClass]="getProductYieldClass(product.yield)">
-                    <img [src]="'/assets/images/' + getProductYieldClass(product.yield) + '.png'" alt="Yield">
-                    <span>{{ product.yield }} kt</span>
-                  </div>
-                  <span class="price">{{ product.price | currency }}</span>
-                  <button (click)="addToCart(product); $event.stopPropagation()">Buy Now</button>
-              </div>
-          </div>
+  <div class="filters">
+    <select #priceSelect (change)="setPriceFilter(priceSelect.value)">
+        <option value="0,999999">All Prices</option>
+        <option value="0,500">0 - 500</option>
+        <option value="500,1000">500 - 1000</option>
+        <option value="1000,2500">1000 - 2500</option>
+        <option value="2500,5000">2500 - 5000</option>
+        <option value="5000,999999">5000 +</option>
+      </select>
+      
+      <select #yieldSelect (change)="setYieldFilter(yieldSelect.value)">
+        <option value="0,999999">All Yields</option>
+        <option value="0,50">0 - 50kt</option>
+        <option value="50,200">50kt - 200kt</option>
+        <option value="200,500">200kt - 500kt</option>
+        <option value="500,1000">500kt - 1000kt</option>
+        <option value="1000,99999">1000kt +</option>
+      </select>
+    </div>
+  
+    <div class="dropdown">
+      <button class="dropdown-toggle">Sort Options</button>
+      <div class="dropdown-menu">
+        <button (click)="sortProducts('price', 1)" [class.active]="isSortSelected('price', 1)">Price Low to High</button>
+        <button (click)="sortProducts('price', -1)" [class.active]="isSortSelected('price', -1)">Price High to Low</button>
+        <button (click)="sortProducts('yield', 1)" [class.active]="isSortSelected('yield', 1)">Yield Low to High</button>
+        <button (click)="sortProducts('yield', -1)" [class.active]="isSortSelected('yield', -1)">Yield High to Low</button>
       </div>
-  </section>
+    </div>
+  
+    <section class="product-section">
+      <div *ngIf="filteredProducts.length; else noProductsTemplate" class="product-grid">
+        
+  <div *ngFor="let product of filteredProducts" class="product-card" [routerLink]="['/product', product.id]">
+    <img [src]="product.imageUrl" alt="{{ product.name }}" class="product-image">
+    <div class="product-details">
+        <h3>{{ product.name }}</h3>
+        <p>{{ product.description | slice:0:50 }}...</p>
+        <div class="yield" [ngClass]="getProductYieldClass(product.yield)">
+          <img [src]="'/assets/images/' + getProductYieldClass(product.yield) + '.png'" alt="Yield">
+          <span>{{ product.yield }} kt</span>
+        </div>
+        <span class="price">{{ product.price | currency }}</span>
+        <button (click)="addToCart(product); $event.stopPropagation()">Buy Now</button>
+    </div>
 </div>
-
+      </div>
+      <div class="product-grid">
+      </div>
+      <ng-template #noProductsTemplate>
+        <div class="no-products-available">
+          No products available with the selected filters.
+        </div>
+      </ng-template>
+    </section>
+  </div>
