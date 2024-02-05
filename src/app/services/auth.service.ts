@@ -79,6 +79,17 @@ register(email: string, password: string, firstName: string, lastName: string): 
     return this.getDecodedToken() ? this.getDecodedToken().nameid : null;
   }
 
+  getCurrentUserEmail(): string {
+    return this.getDecodedToken() ? this.getDecodedToken().email : null;
+  }
+
+  isAdmin(): boolean {
+    if(this.getDecodedToken().role == "Admin")
+      return true;
+    else
+      return false;
+  }
+
   isLoggedIn(): boolean {
     const token = this.getToken();
     return !!token;
